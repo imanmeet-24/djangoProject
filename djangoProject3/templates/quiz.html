@@ -1,0 +1,177 @@
+<!--
+Team Members
+Manmeet Kaur - C0884039
+Angrej Singh - C0884026
+Riya Sidhu - C0886435
+Dheepasri Ravichandran - C0883900
+-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <style>
+
+        h1 {
+            font-family: Monospaced, serif;
+        }
+
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, serif;
+        }
+
+        .quiz-container {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            margin: 5% auto;
+            padding: 20px;
+            margin-bottom: 10%;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 1px;
+            font-weight: 500;
+        }
+
+        input[type="radio"] {
+            margin-right: 8px;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            display: block;
+            margin: 5% auto;
+            padding: 10px 20px;
+            background-color: orange;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button[type="submit"]:hover {
+            background-color: black;
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        header {
+            background-color: orange;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 30px;
+            height: 30px;
+            display: block;
+            margin-bottom: 20%;
+            margin-left: 10px;
+        }
+
+        .user-profile {
+            display: inline;
+        }
+
+        .div1 {
+            margin-left: 4%;
+        }
+
+        .log-out {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            display: block;
+            margin-bottom: 20%;
+        }
+
+        .log-out-link {
+            text-decoration: none;
+        }
+
+        .log-out-button {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline;
+        }
+
+        .div2 {
+            margin-right: 4%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="div1">
+            <img class="profile-img" src="{% static 'account.png' %}" alt="profile">
+            <p class="user-profile">{{user.username}}</p>
+        </div>
+        <h1>TRIVIA TREK</h1>
+        <div class="div2">
+            <img class="log-out" src="{% static 'logout.png' %}" alt="Logout">
+            <a class="log-out-link" href="{% url 'base' %}">
+                <p class="log-out-button">Logout</p>
+            </a>
+        </div>
+    </header>
+
+    <div class="quiz-container">
+
+          <h2>Quiz</h2>
+          <form method="post">  <!-- Form to submit quiz answers -->
+            {% csrf_token %} <!-- Include CSRF token for security -->
+            {% for question in questions %} <!-- Loop through each question -->
+              <p>{{ question.text }}</p> <!-- Display the question text -->
+              <label><input type="radio" name="question_{{ question.id }}" value="{{ question.choice1 }}"> {{ question.choice1 }}</label><br>
+              <label><input type="radio" name="question_{{ question.id }}" value="{{ question.choice2 }}"> {{ question.choice2 }}</label><br>
+              <label><input type="radio" name="question_{{ question.id }}" value="{{ question.choice3 }}"> {{ question.choice3 }}</label><br>
+              <label><input type="radio" name="question_{{ question.id }}" value="{{ question.choice4 }}"> {{ question.choice4 }}</label><br>
+            {% endfor %}
+            <button type="submit">Submit</button> <!-- Submit button to submit the quiz -->
+          </form>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2023 trivia trek</p>
+    </footer>
+
+</body>
+</html>

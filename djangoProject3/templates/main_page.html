@@ -1,0 +1,149 @@
+<!--
+Team Members
+Manmeet Kaur - C0884039
+Angrej Singh - C0884026
+Riya Sidhu - C0886435
+Dheepasri Ravichandran - C0883900
+-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Trek</title>
+    <style>
+
+        h1 {
+            font-family: Monospaced, serif;
+        }
+
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, serif;
+        }
+
+        header {
+            background-color: orange;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+         .image-link {
+            background: white;
+            display: inline-block;
+            text-align: center;
+            margin: 17.5%;
+            margin-top: 5%;
+            margin-bottom: 1%;
+            padding: 4%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.78);
+            border-width: 100px;
+        }
+
+        .image-link img {
+            width: 100%;
+            height: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .no-underline {
+            text-decoration: none;
+        }
+
+        .profile-img {
+            width: 30px;
+            height: 30px;
+            display: block;
+            margin-bottom: 20%;
+            margin-left: 10px;
+        }
+
+        .user-profile {
+            display: inline;
+        }
+
+        .div1 {
+            margin-left: 4%;
+        }
+
+        .log-out {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            display: block;
+            margin-bottom: 20%;
+        }
+
+        .log-out-link {
+            text-decoration: none;
+        }
+
+        .log-out-button {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline;
+        }
+
+        .div2 {
+            margin-right: 4%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="div1">
+            <img class="profile-img" src="{% static 'account.png' %}" alt="profile">
+            <p class="user-profile">{{user.username}}</p>
+        </div>
+        <h1>TRIVIA TREK</h1>
+        <div class="div2">
+            <img class="log-out" src="{% static 'logout.png' %}" alt="Logout">
+            <a class="log-out-link" href="{% url 'base' %}">
+                <p class="log-out-button">Logout</p>
+            </a>
+        </div>
+    </header>
+
+    <div class="image-link">
+        <a class="no-underline" href="{% url 'quiz' %}">  <!-- Link to start the quiz -->
+            <img src="../static/ideas.png" alt="Start Quiz">
+            <p class="no-underline">Start Quiz</p>
+        </a>
+    </div>
+    <div class="image-link">
+        <a class="no-underline" href="{% url 'score' %}">  <!-- Link to view scores -->
+            <img src="../static/ranking.png" alt="View Scores">
+            <p class="no-underline">View Scores</p>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 trivia trek</p>
+    </footer>
+
+</body>
+
+</html>
+

@@ -1,0 +1,97 @@
+<!--
+Team Members
+Manmeet Kaur - C0884039
+Angrej Singh - C0884026
+Riya Sidhu - C0886435
+Dheepasri Ravichandran - C0883900
+-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Trek</title>
+    <style>
+
+        h1 {
+            font-family: Monospaced, serif;
+        }
+
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, serif;
+        }
+
+        header {
+            background-color: orange;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .image-link {
+            background: white;
+            display: inline-block;
+            text-align: center;
+            margin: 17.5%;
+            margin-top: 5%;
+            margin-bottom: 1%;
+            padding: 4%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.78);
+            border-width: 100px;
+        }
+
+        .image-link img {
+            width: 100%;
+            height: 100px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .no-underline {
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>TRIVIA TREK</h1>
+    </header>
+
+    <div class="image-link">
+        <a class="no-underline" href="{% url 'register' %}">  <!-- Create a link to the registration page -->
+            <img src="{% static 'edit.png' %}" alt="Register">
+            <p>Register</p>
+        </a>
+    </div>
+
+    <div class="image-link">
+        <a class="no-underline" href="{% url 'login' %}">  <!-- Create a link to the login page -->
+            <img src="{% static 'login.png' %}" alt="Login">
+            <p>Login</p>
+        </a>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 trivia trek</p>
+    </footer>
+
+</body>
+</html>
+

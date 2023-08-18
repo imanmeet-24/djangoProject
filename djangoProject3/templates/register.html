@@ -1,0 +1,125 @@
+<!--
+Team Members
+Manmeet Kaur - C0884039
+Angrej Singh - C0884026
+Riya Sidhu - C0886435
+Dheepasri Ravichandran - C0883900
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <style>
+
+        .form-container {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 30%;
+            margin: 2.5% auto;
+            padding: 2% 5% 3% 5%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.51);
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="password"] {
+            margin-top: 10px ;
+            width: 100%;
+        }
+
+        .form-container label[for="id_username"],
+        .form-container label[for="id_email"] {
+            width: 50%;
+        }
+
+        .form-container button[type="submit"] {
+            width: 100%;
+            display: block;
+            margin-top: 2%;
+            margin-bottom: 0;
+            padding: 10px 20px;
+            background-color: orange;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .form-container button[type="submit"]:hover {
+            background-color: black;
+        }
+
+        h1 {
+            font-family: Monospaced, serif;
+        }
+
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, serif;
+        }
+
+        header {
+            background-color: orange;
+            color: black;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <header>
+        <h1>TRIVIA TREK</h1>
+    </header>
+
+    <div class="form-container">
+        <h2>Register</h2>
+
+        {% if messages %}  <!-- Check if there are messages to display -->
+          <ul class="messages">
+            {% for message in messages %} <!-- Loop through each message -->
+              <li{% if message.tags == 'success' %} class="success"{% endif %}>{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        <form method="post"> <!-- Registration form -->
+          {% csrf_token %}  <!-- Include CSRF token for security -->
+          {{ form.username.label_tag }} {{ form.username }}<br><br>
+          {{ form.email.label_tag }} {{ form.email }}<br><br>
+          {{ form.password1.label_tag }} {{ form.password1 }}<br><br>
+          {{ form.password2.label_tag }} {{ form.password2 }}<br><br>
+          <button type="submit">Register</button>  <!-- Submit button for registration -->
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 trivia trek</p>
+    </footer>
+
+</body>
+</html>
+
+

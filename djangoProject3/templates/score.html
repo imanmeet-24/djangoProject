@@ -1,0 +1,166 @@
+<!--
+Team Members
+Manmeet Kaur - C0884039
+Angrej Singh - C0884026
+Riya Sidhu - C0886435
+Dheepasri Ravichandran - C0883900
+-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Score</title>
+    <style>
+
+        header {
+                background-color: orange;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: Monospaced, serif;
+        }
+
+        body {
+            background-color: whitesmoke;
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, serif;
+        }
+
+        .score-container {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.51);
+            width: 50%;
+            margin: 5% auto;
+            padding: 20px;
+            margin-bottom: 10%;
+        }
+
+        .custom-button {
+            width: 50%;
+            display: block;
+            padding: 10px 20px;
+            background-color: orange;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: left;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .custom-button:hover {
+            background-color: black;
+
+        }
+
+        img {
+            width: 1%;
+            display: inline-block;
+            margin-right: 0.5%;
+        }
+
+        .profile-img {
+            width: 30px;
+            height: 30px;
+            display: block;
+            margin-bottom: 20%;
+            margin-left: 10px;
+        }
+
+        .user-profile {
+            display: inline;
+        }
+
+        .div1 {
+            margin-left: 4%;
+        }
+
+        .log-out {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            display: block;
+            margin-bottom: 20%;
+        }
+
+        .log-out-link {
+            text-decoration: none;
+        }
+
+        .log-out-button {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            display: inline;
+        }
+
+        .div2 {
+            margin-right: 4%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="div1">
+            <img class="profile-img" src="{% static 'account.png' %}" alt="profile">
+            <p class="user-profile">{{user.username}}</p>
+        </div>
+        <h1>TRIVIA TREK</h1>
+        <div class="div2">
+            <img class="log-out" src="{% static 'logout.png' %}" alt="Logout">
+            <a class="log-out-link" href="{% url 'base' %}">
+                <p class="log-out-button">Logout</p>
+            </a>
+        </div>
+    </header>
+
+    <div class="score-container">
+
+            <h2>Your Quiz Score</h2>
+            <p>Total Score: {{ total_score }}</p> <!-- Display the scores -->
+            <p>Average Score: {{ average_score|floatformat:2 }}%</p>
+            <p>Highest Score: {{ highest_score }}%</p>
+            <p>Lowest Score: {{ lowest_score }}%</p>
+            <br><br>
+            <h3>Quiz History</h3>
+            <ul>
+                {% for quiz in quizzes %} <!-- Loop through each quiz in the quizzes list -->
+                    <li>Quiz taken on: <span class="quiz-date">{{ quiz.quiz_taken_datetime|date:"F j, Y  g:i A" }}</span> - Score: {{ quiz.score }}  </li>
+                    <a href="{% url 'review_quiz' quiz.id %}">Review Quiz</a> <!-- Link to review the quiz -->
+                    <br><br>
+                {% endfor %}
+            </ul>
+
+            <a href="{% url 'quiz' %}" class="custom-button">Take Another Quiz</a>  <!-- Link to take another quiz -->
+
+    </div>
+
+    <footer>
+        <p>&copy; 2023 trivia trek</p>
+    </footer>
+
+</body>
+</html>
