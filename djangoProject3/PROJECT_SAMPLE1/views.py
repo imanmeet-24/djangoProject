@@ -81,7 +81,7 @@ class ScoreView(View):
         total_quizzes = quizzes.count()  # Get the total number of quizzes taken
         if total_quizzes > 0:   # Check if quizzes have been taken
             total_score = sum(quiz.score for quiz in quizzes)   # Calculate the scores
-            average_score = (total_score / total_quizzes)
+            average_score = (total_score / (total_quizzes * 5))*100
             highest_score = max(quiz.score for quiz in quizzes)
             lowest_score = min(quiz.score for quiz in quizzes)
         else:
